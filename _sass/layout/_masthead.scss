@@ -30,6 +30,12 @@
     padding: 0.5em 1em;
     font-family: $sans-serif-narrow;
 
+    /* CUSTOM: Add flexbox layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+
     @include breakpoint($x-large) {
       max-width: $x-large;
     }
@@ -45,30 +51,41 @@
 }
 
 .masthead__menu {
-  float: right; // Forces the menu to the right side
+  float: none; /* Changed from 'right' to 'none' */
+  margin-left: auto; /* CUSTOM: Push menu to the right */
+  order: 2; /* CUSTOM: Ensure menu comes after title */
 
   ul {
     margin: 0;
     padding: 0;
-    // clear: both; // Removed to prevent forcing a new line
     list-style-type: none;
+    display: flex; /* CUSTOM: Use flexbox for horizontal layout */
+    align-items: center;
   }
 }
 
 .masthead__menu-item {
   background-color: var(--global-bg-color);
-  display: block; // Default to stacked (mobile view)
+  display: inline-block; /* CUSTOM: Always display inline, not block */
   list-style-type: none;
   white-space: nowrap;
+  margin-left: 1.5rem; /* CUSTOM: Add spacing between items */
 
-  // On large screens, display items in a horizontal line
-  @include breakpoint($large) {
-    display: inline-block;
+  &:first-child {
+    margin-left: 0; /* CUSTOM: No margin for first item */
   }
+
+  /* Remove the breakpoint - we want horizontal display always */
+  // @include breakpoint($large) {
+  //   display: inline-block;
+  // }
 
   &--lg {
     padding-right: 2em;
     font-weight: 700;
+    order: 1; /* CUSTOM: Ensure title comes first */
+    margin-right: auto; /* CUSTOM: Push title to the left */
+    margin-left: 0; /* CUSTOM: No left margin for title */
   }
 }
 
@@ -85,142 +102,29 @@
   border-bottom: 2px solid var(--global-text-color);
 }
 
-/* ========================================================================
-   UPDATED CUSTOM NAVIGATION FIX FOR ACADEMIC PAGES TEMPLATE
-   This fix prevents the collapsed hamburger menu and keeps items visible
-   ======================================================================== */
-
-/* Force flexbox layout for masthead */
-.masthead__inner-wrap {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  flex-wrap: nowrap !important;
-  clear: none !important;
-}
-
-/* Site title/name stays on the left - prevent centering */
-.site-title,
-.masthead__menu-item--lg {
-  order: 1;
-  margin-right: auto;
-  margin-left: 0 !important;
-  text-align: left !important;
-  flex-shrink: 0;
-}
-
-/* Navigation menu positioned to the right */
-.masthead__menu {
-  order: 2;
-  margin-left: auto;
-  float: none !important;
-  flex-shrink: 0;
-}
-
-.greedy-nav {
-  float: none !important;
-  margin-left: auto;
-  background: transparent;
-  
-  /* CRITICAL: Force visible links to always show, never collapse */
-  .visible-links {
-    display: flex !important;
-    align-items: center;
-    padding-left: 0;
-    margin-left: 0;
-    opacity: 1 !important;
-    visibility: visible !important;
-    position: static !important;
-    
-    li {
-      float: none;
-      display: inline-block !important;
-      margin-left: 1.5rem;
-      visibility: visible !important;
-      
-      &:first-child {
-        margin-left: 0;
-      }
-    }
-  }
-  
-  a {
-    padding: 0.5rem 0.75rem;
-    display: inline-block;
-  }
-  
-  /* CRITICAL: Hide the hamburger menu button completely */
-  button,
-  .greedy-nav__toggle {
-    display: none !important;
-  }
-  
-  /* CRITICAL: Hide the hidden/collapsed menu */
-  .hidden-links {
-    display: none !important;
-  }
-}
-
-/* Prevent the greedy-nav JavaScript from hiding items */
-.greedy-nav .visible-links li.hidden {
-  display: inline-block !important;
-  visibility: visible !important;
-}
-
-/* Ensure all navigation items stay visible */
-.masthead__menu .visible-links li {
-  position: static !important;
-  clip: auto !important;
-  width: auto !important;
-  height: auto !important;
-  overflow: visible !important;
-}
-
-/* Override any media queries that might hide navigation */
-@media (max-width: 1024px) {
-  .greedy-nav .visible-links {
-    display: flex !important;
-  }
-  
-  .greedy-nav button,
-  .greedy-nav__toggle {
-    display: none !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .greedy-nav .visible-links {
-    display: flex !important;
+/* Responsive adjustments for very small screens */
+@media (max-width: 640px) {
+  .masthead__inner-wrap {
     flex-wrap: wrap;
-    justify-content: flex-end;
   }
   
-  .greedy-nav button,
-  .greedy-nav__toggle {
-    display: none !important;
+  .masthead__menu-item--lg {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
   }
   
-  /* Keep items visible but allow wrapping on very small screens */
-  .greedy-nav .visible-links li {
-    margin-left: 1rem;
-  }
-}
-
-/* Extra specificity to override theme defaults */
-.masthead .masthead__inner-wrap {
-  .masthead__menu-item {
-    float: none !important;
-  }
-  
-  .greedy-nav {
-    .visible-links {
-      position: static !important;
+  .masthead__menu {
+    width: 100%;
+    margin-left: 0;
+    
+    ul {
+      justify-content: center;
     }
   }
-}
-
-/* Prevent JavaScript from applying hidden class */
-.js .greedy-nav .visible-links.hidden {
-  display: flex !important;
-  visibility: visible !important;
+  
+  .masthead__menu-item {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }
