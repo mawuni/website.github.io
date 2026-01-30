@@ -6,7 +6,7 @@
 # `jekyll serve -l -H localhost`. If you change this file, please restart the 
 # server process.
 
-title                    : "Mathias Awuni"
+title                    : "Home"
 title_separator          : "-"
 name                     : &name "Mathias Awuni"
 description              : &description "Research on entrepreneurship, venture capital, firm dynamics, and regulation"
