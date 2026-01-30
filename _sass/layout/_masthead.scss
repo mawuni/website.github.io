@@ -25,11 +25,9 @@
   }
 
   &__inner-wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    
     @include container;
-    //@include clearfix;//
+    @include clearfix;
     padding: 0.5em 1em;
     font-family: $sans-serif-narrow;
 
