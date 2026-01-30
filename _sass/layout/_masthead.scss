@@ -84,3 +84,14 @@
   color: var(--global-text-color);
   border-bottom: 2px solid var(--global-text-color);
 }
+.masthead__menu-item {
+  background-color: var(--global-bg-color);
+  display: inline; // Changed from 'block' to 'inline'
+  list-style-type: none;
+  white-space: nowrap;
+
+  &--lg {
+    padding-right: 2em;
+    font-weight: 700;
+  }
+}
