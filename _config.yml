@@ -10,8 +10,8 @@ title                    : "Mathias Awuni"
 title_separator          : "-"
 name                     : &name "Mathias Awuni"
 description              : &description ""
-url                      : https://mawuni.github.io
-baseurl                  : ""
+url                      : "https://mawuni.github.io"
+baseurl                  : "mawuni.github.io"
 repository               : "mawuni.github.io"
 
 
