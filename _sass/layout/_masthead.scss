@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MASTHEAD
+   MASTHEAD - Force navigation visible on desktop
    ========================================================================== */
 
 .masthead {
@@ -45,7 +45,7 @@
 }
 
 .masthead__menu {
-  float: right; // Keep menu on the right side
+  float: right;
   
   ul {
     margin: 0;
@@ -57,12 +57,12 @@
 
 .masthead__menu-item {
   background-color: var(--global-bg-color);
-  display: block; // Stack vertically on mobile
+  display: block;
   list-style-type: none;
   white-space: nowrap;
 
-  // Display horizontally on large screens
-  @include breakpoint($large) {
+  // Show navigation inline on screens wider than 768px
+  @media (min-width: 768px) {
     display: inline;
   }
 
