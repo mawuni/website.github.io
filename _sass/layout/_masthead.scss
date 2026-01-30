@@ -84,3 +84,124 @@
   color: var(--global-text-color);
   border-bottom: 2px solid var(--global-text-color);
 }
+
+/* ========================================================================
+   CUSTOM NAVIGATION POSITIONING FOR ACADEMIC PAGES TEMPLATE
+   Add this to _sass/_custom.scss or at the end of _sass/_masthead.scss
+   ======================================================================== */
+
+/* Force flexbox layout for masthead */
+.masthead__inner-wrap {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  clear: none !important;
+}
+
+/* Site title stays on the left */
+.site-title {
+  order: 1;
+  margin-right: auto;
+}
+
+/* Navigation menu positioned to the right */
+.masthead__menu {
+  order: 2;
+  margin-left: auto;
+  float: none !important;
+}
+
+.greedy-nav {
+  float: none !important;
+  margin-left: auto;
+  background: transparent;
+  
+  .visible-links {
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+    margin-left: 0;
+    
+    li {
+      float: none;
+      display: inline-block;
+      margin-left: 1.5rem;
+      
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+  
+  a {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  button {
+    margin-left: 1rem;
+    padding: 0 0.5rem;
+  }
+}
+
+/* Hidden menu dropdown positioning */
+.greedy-nav .hidden-links {
+  position: absolute;
+  right: 0;
+  margin-top: 15px;
+  background: var(--global-bg-color, #fff);
+  border: 1px solid var(--global-border-color, #f2f3f3);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  
+  &.hidden {
+    display: none;
+  }
+  
+  a {
+    display: block;
+    padding: 0.5rem 1rem;
+    
+    &:hover {
+      background: var(--global-border-color, #f2f3f3);
+    }
+  }
+}
+
+/* Responsive: Center menu on smaller screens */
+@media (max-width: 768px) {
+  .masthead__inner-wrap {
+    flex-wrap: wrap;
+  }
+  
+  .site-title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .masthead__menu {
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: 0;
+    
+    .visible-links {
+      justify-content: center;
+      
+      li {
+        margin: 0 0.75rem;
+      }
+    }
+  }
+  
+  .greedy-nav {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* Ensure no conflicts with existing styles */
+.masthead .masthead__inner-wrap {
+  .masthead__menu-item {
+    float: none !important;
+  }
+}
