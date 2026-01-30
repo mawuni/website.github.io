@@ -1,5 +1,6 @@
 /* ==========================================================================
-   MASTHEAD
+   MASTHEAD - CORRECTED VERSION FOR ACADEMIC PAGES
+   This version keeps navigation visible and properly aligned
    ========================================================================== */
 
 .masthead {
@@ -29,12 +30,11 @@
     @include clearfix;
     padding: 0.5em 1em;
     font-family: $sans-serif-narrow;
-
-    /* CUSTOM: Add flexbox layout */
+    
+    /* IMPORTANT: Use flexbox for proper alignment */
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: nowrap;
+    justify-content: space-between;
 
     @include breakpoint($x-large) {
       max-width: $x-large;
@@ -50,42 +50,44 @@
   }
 }
 
+/* Site title - this is your name "Mathias Awuni" */
+.site-title {
+  order: 1;
+  margin-right: auto;
+  flex-shrink: 0;
+}
+
+/* Navigation menu container */
 .masthead__menu {
-  float: none; /* Changed from 'right' to 'none' */
-  margin-left: auto; /* CUSTOM: Push menu to the right */
-  order: 2; /* CUSTOM: Ensure menu comes after title */
+  order: 2;
+  margin-left: auto;
+  flex-shrink: 0;
+  /* IMPORTANT: Don't float, use flexbox instead */
+  float: none !important;
 
   ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
-    display: flex; /* CUSTOM: Use flexbox for horizontal layout */
+    display: flex;
     align-items: center;
+    gap: 1.5rem; /* Space between menu items */
   }
 }
 
 .masthead__menu-item {
   background-color: var(--global-bg-color);
-  display: inline-block; /* CUSTOM: Always display inline, not block */
   list-style-type: none;
   white-space: nowrap;
-  margin-left: 1.5rem; /* CUSTOM: Add spacing between items */
+  /* IMPORTANT: Always display inline, not block */
+  display: inline-block !important;
 
-  &:first-child {
-    margin-left: 0; /* CUSTOM: No margin for first item */
-  }
-
-  /* Remove the breakpoint - we want horizontal display always */
-  // @include breakpoint($large) {
-  //   display: inline-block;
-  // }
-
+  /* The site title/name with special styling */
   &--lg {
     padding-right: 2em;
     font-weight: 700;
-    order: 1; /* CUSTOM: Ensure title comes first */
-    margin-right: auto; /* CUSTOM: Push title to the left */
-    margin-left: 0; /* CUSTOM: No left margin for title */
+    order: 1;
+    margin-right: auto;
   }
 }
 
@@ -102,29 +104,20 @@
   border-bottom: 2px solid var(--global-text-color);
 }
 
-/* Responsive adjustments for very small screens */
+/* Responsive: Stack on small screens */
 @media (max-width: 640px) {
   .masthead__inner-wrap {
-    flex-wrap: wrap;
-  }
-  
-  .masthead__menu-item--lg {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
   }
   
   .masthead__menu {
     width: 100%;
-    margin-left: 0;
+    margin-top: 0.5rem;
     
     ul {
-      justify-content: center;
+      justify-content: flex-start;
+      gap: 1rem;
     }
-  }
-  
-  .masthead__menu-item {
-    margin-left: 1rem;
-    margin-right: 1rem;
   }
 }
