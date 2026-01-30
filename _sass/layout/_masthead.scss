@@ -42,25 +42,29 @@
       text-decoration: none;
     }
   }
+}
 
-   
 .masthead__menu {
-  float: right; // <--- ADD THIS LINE
+  float: right; // Forces the menu to the right side
 
   ul {
     margin: 0;
     padding: 0;
-    // clear: both;  <--- DELETE OR COMMENT OUT THIS LINE
+    // clear: both; // Removed to prevent forcing a new line
     list-style-type: none;
   }
 }
 
-
 .masthead__menu-item {
   background-color: var(--global-bg-color);
-  display: block;
+  display: block; // Default to stacked (mobile view)
   list-style-type: none;
   white-space: nowrap;
+
+  // On large screens, display items in a horizontal line
+  @include breakpoint($large) {
+    display: inline-block;
+  }
 
   &--lg {
     padding-right: 2em;
@@ -72,12 +76,11 @@
   color: var(--global-text-color);
   font-weight: 700;
   border-bottom: 2px solid var(--global-text-color);
-  pointer-events: none; /* Move this here */
-  cursor: default; /* Move this here too */
+  pointer-events: none;
+  cursor: default;
 }
 
 .masthead__menu-item.selected a:hover {
   color: var(--global-text-color);
   border-bottom: 2px solid var(--global-text-color);
-  /* No need to repeat pointer-events and cursor here */
 }
