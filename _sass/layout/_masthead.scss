@@ -86,8 +86,8 @@
 }
 
 /* ========================================================================
-   CUSTOM NAVIGATION POSITIONING FOR ACADEMIC PAGES TEMPLATE
-   Add this to _sass/_custom.scss or at the end of _sass/_masthead.scss
+   UPDATED CUSTOM NAVIGATION FIX FOR ACADEMIC PAGES TEMPLATE
+   This fix prevents the collapsed hamburger menu and keeps items visible
    ======================================================================== */
 
 /* Force flexbox layout for masthead */
@@ -99,10 +99,14 @@
   clear: none !important;
 }
 
-/* Site title stays on the left */
-.site-title {
+/* Site title/name stays on the left - prevent centering */
+.site-title,
+.masthead__menu-item--lg {
   order: 1;
   margin-right: auto;
+  margin-left: 0 !important;
+  text-align: left !important;
+  flex-shrink: 0;
 }
 
 /* Navigation menu positioned to the right */
@@ -110,6 +114,7 @@
   order: 2;
   margin-left: auto;
   float: none !important;
+  flex-shrink: 0;
 }
 
 .greedy-nav {
@@ -117,16 +122,21 @@
   margin-left: auto;
   background: transparent;
   
+  /* CRITICAL: Force visible links to always show, never collapse */
   .visible-links {
-    display: flex;
+    display: flex !important;
     align-items: center;
     padding-left: 0;
     margin-left: 0;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: static !important;
     
     li {
       float: none;
-      display: inline-block;
+      display: inline-block !important;
       margin-left: 1.5rem;
+      visibility: visible !important;
       
       &:first-child {
         margin-left: 0;
@@ -136,72 +146,81 @@
   
   a {
     padding: 0.5rem 0.75rem;
+    display: inline-block;
   }
   
-  button {
-    margin-left: 1rem;
-    padding: 0 0.5rem;
+  /* CRITICAL: Hide the hamburger menu button completely */
+  button,
+  .greedy-nav__toggle {
+    display: none !important;
+  }
+  
+  /* CRITICAL: Hide the hidden/collapsed menu */
+  .hidden-links {
+    display: none !important;
   }
 }
 
-/* Hidden menu dropdown positioning */
-.greedy-nav .hidden-links {
-  position: absolute;
-  right: 0;
-  margin-top: 15px;
-  background: var(--global-bg-color, #fff);
-  border: 1px solid var(--global-border-color, #f2f3f3);
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  
-  &.hidden {
-    display: none;
+/* Prevent the greedy-nav JavaScript from hiding items */
+.greedy-nav .visible-links li.hidden {
+  display: inline-block !important;
+  visibility: visible !important;
+}
+
+/* Ensure all navigation items stay visible */
+.masthead__menu .visible-links li {
+  position: static !important;
+  clip: auto !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Override any media queries that might hide navigation */
+@media (max-width: 1024px) {
+  .greedy-nav .visible-links {
+    display: flex !important;
   }
   
-  a {
-    display: block;
-    padding: 0.5rem 1rem;
-    
-    &:hover {
-      background: var(--global-border-color, #f2f3f3);
-    }
+  .greedy-nav button,
+  .greedy-nav__toggle {
+    display: none !important;
   }
 }
 
-/* Responsive: Center menu on smaller screens */
 @media (max-width: 768px) {
-  .masthead__inner-wrap {
+  .greedy-nav .visible-links {
+    display: flex !important;
     flex-wrap: wrap;
+    justify-content: flex-end;
   }
   
-  .site-title {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 0.5rem;
+  .greedy-nav button,
+  .greedy-nav__toggle {
+    display: none !important;
   }
   
-  .masthead__menu {
-    width: 100%;
-    margin-top: 1rem;
-    margin-left: 0;
-    
-    .visible-links {
-      justify-content: center;
-      
-      li {
-        margin: 0 0.75rem;
-      }
-    }
-  }
-  
-  .greedy-nav {
-    width: 100%;
-    margin-left: 0;
+  /* Keep items visible but allow wrapping on very small screens */
+  .greedy-nav .visible-links li {
+    margin-left: 1rem;
   }
 }
 
-/* Ensure no conflicts with existing styles */
+/* Extra specificity to override theme defaults */
 .masthead .masthead__inner-wrap {
   .masthead__menu-item {
     float: none !important;
   }
+  
+  .greedy-nav {
+    .visible-links {
+      position: static !important;
+    }
+  }
+}
+
+/* Prevent JavaScript from applying hidden class */
+.js .greedy-nav .visible-links.hidden {
+  display: flex !important;
+  visibility: visible !important;
 }
