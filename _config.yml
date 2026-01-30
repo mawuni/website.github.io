@@ -12,7 +12,7 @@ name                     : &name "Mathias Awuni"
 description              : &description "Research on entrepreneurship, venture capital, firm dynamics, and regulation"
 url                      : https://mawuni.github.io
 baseurl                  : ""
-repository               : "mawuni/academicpages.github.io"
+repository               : "mawuni.github.io"
 
 
 # Site Author - The following control what appear as part of the author content on the side bar.
