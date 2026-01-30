@@ -6,10 +6,10 @@
 # `jekyll serve -l -H localhost`. If you change this file, please restart the 
 # server process.
 
-title                    : "Home"
+title                    : "Mathias Awuni"
 title_separator          : "-"
 name                     : &name "Mathias Awuni"
-description              : &description "Research on entrepreneurship, venture capital, firm dynamics, and regulation"
+description              : &description ""
 url                      : https://mawuni.github.io
 baseurl                  : ""
 repository               : "mawuni.github.io"
@@ -20,8 +20,8 @@ repository               : "mawuni.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   avatar           : "profile.png"
-  name             : "Mathias Awuni"
-  bio              : "PhD Candidate in Finance"
+  name             : "PhD Candidate in Finance"
+  bio              : "Research on entrepreneurship, venture capital, firm dynamics, and regulation"
   location         : "New Jersey, USA"
   employer         : "Stevens Institute of Technology"
   email            : "mawuni@stevens.edu"
